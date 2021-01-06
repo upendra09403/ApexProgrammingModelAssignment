@@ -1,0 +1,4 @@
+<aura:component>
+<aura:attribute name="greeting" type="String" default="World"/>
+Hello,{!v.greeting}!
+</aura:component>
