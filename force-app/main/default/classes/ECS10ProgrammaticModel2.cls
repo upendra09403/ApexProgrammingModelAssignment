@@ -66,7 +66,7 @@ system.debug('For AccountId :'+key+' AccountId is :'+AccMap1.get(key));
     
     public void AggregateAmt(){
         List<AggregateResult> aggrList = [SELECT  SUM(Amount)Total ,CALENDAR_YEAR(CloseDate)year 
-                                      FROM Opportunity WHERE isClosed=true and closedate=This_Fiscal_Year Group by  CALENDAR_YEAR(CloseDate)] ;
+                                          FROM Opportunity WHERE isClosed=true and closedate=This_Fiscal_Year Group by  CALENDAR_YEAR(CloseDate)] ;
         Map<Integer , Decimal> SumtoYear = new Map<Integer,Decimal>() ;
         for(AggregateResult a : aggrList){
             SumtoYear.put((Integer)a.get('year'),(Decimal)a.get('Total')) ; 
@@ -76,7 +76,7 @@ system.debug('For AccountId :'+key+' AccountId is :'+AccMap1.get(key));
     
     public void TotalDistinctLead(){
         List<AggregateResult> SumLead=[select count_distinct(name)Total ,leadSource 
-                               from lead group by leadsource having count_distinct(name)>3];
+                                       from lead group by leadsource having count_distinct(name)>3];
         //Map<string,integer>leadMap=new Map<string,integer>();
         for(AggregateResult res:SumLead){
             integer countLead=(integer)res.get('Total');
@@ -93,14 +93,14 @@ system.debug('For AccountId :'+key+' AccountId is :'+AccMap1.get(key));
         for(AggregateResult res:AggrResult){
             InnerMap.put((string)res.get('status'),(integer)res.get('Total'));
             leadMap.put((string)res.get('leadsource'),InnerMap);
-          /*string sts=(string)res.get('status');
-            string src=(string)res.get('leadsource');
-            integer count=(integer)res.get('Total');
-            system.debug(src+', '+sts+', '+count); */
+            /*string sts=(string)res.get('status');
+string src=(string)res.get('leadsource');
+integer count=(integer)res.get('Total');
+system.debug(src+', '+sts+', '+count); */
         }
         system.debug('Result is :'+leadMap);
     }
-     //  Child To parent Query****
+    //  Child To parent Query****
     //        
     public void GetContactMediaIndustry(){
         list<contact>conlist=[select name,account.name from contact where account.industry='Media'];

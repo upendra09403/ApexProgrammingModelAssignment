@@ -1,5 +1,5 @@
 public class ESPLBasicProgrammingSet3 {
-    public void FibonacciNumbers(integer n){
+    public integer FibonacciNumbers(integer n){
         integer a=0;
         integer b=1;
         integer c;
@@ -9,11 +9,13 @@ public class ESPLBasicProgrammingSet3 {
             a=b;
             b=c;
         }
+        return a;
     }
-    public void ReverseString(string str){
+    public string ReverseString(string str){
         system.debug('Reverse string is '+str.reverse());
+        return str.reverse();
     }
-    public void OperationMethod(string str){
+    public string[] OperationMethod(string str){
         string replaceOcc=str.replace('@', 'A');
         system.debug('Replace occurance of @ with A :'+replaceOcc);
         system.debug('Substring is :'+replaceOcc.substring(11));
@@ -25,9 +27,9 @@ public class ESPLBasicProgrammingSet3 {
         system.debug('After Removing white spaces :'+str.deleteWhitespace());
         system.debug('String to upper case :'+str.toUpperCase());
         system.debug('String to Lower case :'+str.toLowerCase());  
-        
+        return str1;
     }
-    public void getStringOccurence(string str){
+    public list<string> getStringOccurence(string str){
         string strArray=str.deleteWhitespace();
         string[] stringArray=strArray.split('');
         //system.debug(stringArray);
@@ -43,7 +45,8 @@ public class ESPLBasicProgrammingSet3 {
         for(integer i=0;i<strSet.size();i++){
             system.debug('String character occures '+strlist[i]+' :='+str.countMatches(strlist[i])+' Times');
         }
-        
+        system.debug(strlist);
+        return strlist;
     } 
     
     // calling static method from opps concept set3 to non static method

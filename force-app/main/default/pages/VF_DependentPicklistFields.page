@@ -1,0 +1,21 @@
+<apex:page controller="Controller_DependentPicklistVFPage">
+    <apex:form >
+    <apex:pageBlock title="Dependent Picklist Testing">
+       <apex:pageBlockSection >
+        <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Country" />
+            <apex:selectList size="1" value="{!country}"> 
+                  <apex:selectOptions value="{!getCountryOptions}"></apex:selectOptions>
+                <apex:actionSupport event="onchange" action="{!getCityOptions}" reRender="cities" />
+            </apex:selectList>
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSectionItem >
+            <apex:outputLabel value="City" />
+            <apex:selectList size="1" value="{!city}" id="cities"> 
+                  <apex:selectOptions value="{!cityOptions}"></apex:selectOptions>
+            </apex:selectList>
+           </apex:pageBlockSectionItem>
+        </apex:pageBlockSection> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

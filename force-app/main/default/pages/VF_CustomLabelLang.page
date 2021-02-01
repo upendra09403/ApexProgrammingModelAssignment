@@ -1,0 +1,11 @@
+<apex:page language="{!language}" controller="Cont_CustomLabelLang">
+    <apex:form >
+        <apex:pageBlock title="Custom Label Translation">
+       <apex:commandlink action="{!toEnglish}" value="English"/>
+       <br/>
+       <apex:commandlink action="{!toFrench}" value="French"/>
+       <br/> <br/>
+       {!$Label.Demo_Label}
+            </apex:pageBlock>
+    </apex:form>
+</apex:page>
