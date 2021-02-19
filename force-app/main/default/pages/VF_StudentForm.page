@@ -23,7 +23,8 @@
             <apex:inputField label="City" value="{!c.City__c}" />                      
         </apex:pageBlockSection>
         <apex:pageBlockButtons location="Bottom">
-            <apex:commandButton value="Save" action="{!save}" />  
+            <apex:commandButton value="Save" action="{!save}" /> 
+            <apex:commandButton value="Cancel" action="{!cancel}" />
         </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>

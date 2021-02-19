@@ -1,8 +1,6 @@
 trigger ECS11Model3Set1TriggerAccount on Account (before insert,before update,after insert) {
-    
-    if(TriggerSetting__c.getInstance().ECS11Model3Set1TriggerAccount__c==false){
-    return;
-    }
+    boolean bool=TriggerSetting__c.getInstance().ECS11Model3Set1TriggerAccount__c;
+    if(bool==true){
     /*if(trigger.isInsert){
         ECS11Model3Set1.checkDebugAccount(trigger.new);
         system.debug('Trigger is fired due to insertion');
@@ -25,7 +23,13 @@ trigger ECS11Model3Set1TriggerAccount on Account (before insert,before update,af
     }
     }   */
     
-    if(trigger.isafter && Trigger.isinsert){
-        ECS_11_ProgrammaticModel_3Set2.TaskCreationAfterAccountInsert(trigger.newmap);
+   // if(trigger.isafter && Trigger.isinsert){
+      //  ECS_11_ProgrammaticModel_3Set2.TaskCreationAfterAccountInsert(trigger.newmap);
+   // }
+    if(trigger.isafter && trigger.isinsert){
+       ECS11Model3Set1.conafteracc(trigger.new);
+    }
+    }else{
+    return;
     }
 }

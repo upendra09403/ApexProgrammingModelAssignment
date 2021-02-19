@@ -1,0 +1,115 @@
+<!--
+  Visualforce page where customer can submit their form 
+   as per the field service requirement
+  date- 04/02/2021
+  Upendra Singh
+-->
+
+<apex:page controller="Cont_ServiceFieldManagement" extensions="Cont_FieldServiceToUpdate" >
+    <apex:form >
+        <apex:pageBlock title="Create New Order" >
+            <apex:pageBlockSection title="Product Detail" columns="2">
+            <apex:inputText label="Customer Name" value="{!customerName}" />
+        <apex:inputText label="Product Name" value="{!ProductName}" />
+            <apex:inputtext label="Purchase Date" value="{!PurchaseDate}" html-placeholder="MM/DD/YYYY" />
+        <apex:inputTextarea label="Service Required" value="{!serviceNeeded}" /> 
+            <apex:inputText label="Customer Phone" value="{!phone}" />
+            <apex:inputText label="Customer Email" value="{!email}" />
+            <apex:inputText label="Customer City" value="{!City}" />
+            <apex:inputTextarea label="Address" value="{!address}" />
+                </apex:pageBlockSection>
+        <apex:pageBlockButtons location="Bottom">
+        <apex:commandButton action="{!save}" value="Submit"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+              </apex:pageBlockButtons> 
+        </apex:pageBlock>
+        <apex:pageblock title="Work Order Assignment" id="OrderAssign" >
+        <apex:pageBlockSection title="Agent in Particular Location" columns="3" >
+           <apex:inputText label="City" value="{!agentCity}" /> 
+            <apex:pageBlockTable value="{!agent}" var="a">
+                <apex:column value="{!a.id}"/>
+                <apex:column value="{!a.name}"/>
+                <apex:column value="{!a.City__c}"/>
+            </apex:pageBlockTable>
+            <apex:pageBlockTable value="{!orders}" var="ord">
+            <apex:column value="{!ord.Product_Name__c}"/>
+            <apex:column value="{!ord.Customer_Name__c}"/>
+               <apex:column value="{!ord.City__c}"/>
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:commandButton value="Get Agent Of This City" action="{!getAgent}" reRender="OrderAssign" />
+            <apex:commandButton value="Get Orders Of this city" action="{!getorders}" reRender="OrderAssign" />
+            <apex:commandButton value="Assign orders" action="{!AssignAgent}" reRender="OrderAssign" />
+            <apex:commandButton action="{!cancel}" value="Cancel"/>
+        </apex:pageblock>
+        
+        <apex:pageblock title="Update Your Order">
+            <apex:pageBlockSection >
+                <apex:inputText label="Enter Your Email" value="{!emailId}"/>
+                <apex:commandButton action="{!getRecord}" value="SearchResult"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Search Result" >
+                <apex:pageBlockTable value="{!searchResult}" var="res" >  
+                <apex:column value="{!res.Product_Name__c}"/>
+                    <apex:column value="{!res.Customer_Name__c}"/>
+                    <apex:column value="{!res.Purchase_Date__c}"/>
+                    <apex:column headerValue="Service Required">
+                        <apex:outputField value="{!res.Service_Required__c}">
+                        <apex:inlineEditSupport event="onclick" />
+                            </apex:outputField>
+                    </apex:column> 
+                    <apex:column headerValue="Phone">
+                        <apex:outputField value="{!res.Phone__c}">
+                        <apex:inlineEditSupport event="onclick" />
+                            </apex:outputField>
+                    </apex:column>
+                    <apex:column headerValue="Email">
+                        <apex:outputField value="{!res.Email__c}">
+                        <apex:inlineEditSupport event="onclick" />
+                            </apex:outputField>
+                    </apex:column>
+                     <apex:column headerValue="Address">
+                        <apex:outputField value="{!res.Address__c}">
+                        <apex:inlineEditSupport event="onclick" />
+                            </apex:outputField>
+                    </apex:column>
+                </apex:pageBlockTable>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection >
+                <apex:commandButton action="{!Status}" value="Status" />
+                <apex:outputfield value="{!getStatus.Status__c}" />
+                    <apex:outputfield value="{!getStatus.field_agent__r.name}" />
+                    <apex:outputfield value="{!getStatus.field_agent__r.Phone__c}" />
+                </apex:pageBlockSection>
+                <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton action="{!updateresult}" value="Update" />
+                <apex:commandButton action="{!goBack}" value="Cancel" />
+                    </apex:pageBlockButtons>
+                
+        
+        </apex:pageblock>
+    
+    
+        <!-- Implemented apex:map for google map but it is giving error Unknown component apex:map
+               on my poc i found we can not use this component in developers edition -->
+    
+   <!--  
+      <apex:pageBlock >
+        <apex:pageBlockSection title="Contacts For {!Agent.Name }"> 
+        
+            <!-- Displays corresponding Contacts for Account 
+            <apex:dataList value="{!Agent}" var="ag">
+                <apex:outputText value="{!ag.Name}" />
+            </apex:dataList>  
+            <!-- For displaying google Map 
+            <apex:map width="600px" height="400px" mapType="roadmap" center="{!ag.street__c},{!ag.city__c},{!ag.state__c},{!ag.postal_code__c}"> 
+            
+            <!-- For Displaying Markers 
+                <apex:repeat value="{! Agent.customer_services__c }" var="cust">
+                    <apex:mapMarker title="{! cust.Customer_Name__c }" position="{!cust.City__c},{!cust.Address__c}"/>
+                </apex:repeat>                
+            </apex:map>            
+        </apex:pageBlockSection>
+    </apex:pageBlock> -->
+    </apex:form>
+</apex:page>

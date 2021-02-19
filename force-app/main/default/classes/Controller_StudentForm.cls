@@ -22,6 +22,14 @@ public class Controller_StudentForm {
     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM,'Your admission application has been submitted successfully'));
    }
        insert c;  
-        return null;
+        PageReference tempPage = ApexPages.currentPage();            
+        tempPage.setRedirect(true);
+        return tempPage;
+    }
+     public pagereference cancel(){
+        PageReference tempPage = ApexPages.currentPage();            
+        tempPage.setRedirect(true);
+        return tempPage;
+        
     }
 }

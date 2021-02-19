@@ -1,0 +1,15 @@
+<apex:page controller="setRequiredResource" lightningStylesheets="true"> 
+    <apex:form rendered="{!IF(errorMessage==null, true,false)}"> 
+        <apex:pageBlock title="Create Resource Preference">
+            <apex:outputText value="Resource to set as Required on Work Orders: "></apex:outputText>
+            <apex:selectList value="{!chosenResource}" size="1" multiselect="false">
+                <apex:selectOptions value="{!openOptions}" id="field" />
+            </apex:selectList><br/><br/>
+            <apex:commandButton action="{!createResourcePreferences}" oncomplete="parent.postMessage('closeLightbox','*')" value="Submit">
+            </apex:commandButton>
+        </apex:pageBlock>
+        <apex:outputText value="Total Service Appointments within Polygon: {!numServiceAppointments}"></apex:outputText><br/>
+        <apex:outputText value="Resource Preference Records to Potentially be Created: {!numParentWorkOrders}"></apex:outputText>
+    </apex:form>
+<apex:outputText rendered="{!IF(NOT(errorMessage==null), true,false)}">{!errorMessage}</apex:outputText>
+</apex:page>

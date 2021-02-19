@@ -3,7 +3,7 @@
     <apiVersion>50.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>VF_StudentForm</label>
+    <label>VF_setRequiredResource</label>
     <packageVersions>
         <majorNumber>1</majorNumber>
         <minorNumber>19</minorNumber>

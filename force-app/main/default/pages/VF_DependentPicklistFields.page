@@ -11,8 +11,8 @@
            </apex:pageBlockSectionItem>
            <apex:pageBlockSectionItem >
             <apex:outputLabel value="City" />
-            <apex:selectList size="1" value="{!city}" id="cities"> 
-                  <apex:selectOptions value="{!cityOptions}"></apex:selectOptions>
+            <apex:selectList size="1" value="{!city}" id="cities" > 
+                  <apex:selectOptions value="{!cityOptions}" ></apex:selectOptions>
             </apex:selectList>
            </apex:pageBlockSectionItem>
         </apex:pageBlockSection> 

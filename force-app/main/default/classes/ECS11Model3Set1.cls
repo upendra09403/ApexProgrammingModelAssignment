@@ -93,4 +93,14 @@ public class ECS11Model3Set1 {
         }
         insert caseList;
     }
+    public static void conafteracc(list<account> acclist){
+        list<contact>conlist=new list<contact>();
+        for(account acc:acclist){
+            contact co=new contact();
+            co.LastName=acc.name+' contact';
+            co.AccountId=acc.id;
+            conlist.add(co);
+        }
+        insert conlist;
+    }
 }
