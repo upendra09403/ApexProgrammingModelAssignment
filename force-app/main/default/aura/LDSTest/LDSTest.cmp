@@ -1,0 +1,31 @@
+<aura:component >
+	<article class="slds-card">
+<div class="slds-page-header">
+<div class="slds-page-header__row">
+<div class="slds-page-header__col-title">
+<div class="slds-media">
+
+<div class="slds-media__figure">
+<span class="slds-icon_container slds-icon-standard-account" title="Description of icon when needed">
+   <lightning:icon iconName="standard:account" alternativeText="Account" title="Account" />
+  <span class="slds-assistive-text">Description of icon when needed</span>
+</span>
+</div>
+
+<div class="slds-media__body">
+<div class="slds-page-header__name">
+<div class="slds-page-header__name-title">
+<h1>
+<span>Opportunities</span>
+<span class="slds-page-header__title slds-truncate" title="Recently Viewed">Recently Viewed</span>
+</h1>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</article>
+</aura:component>

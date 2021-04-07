@@ -1,5 +1,5 @@
 public class Set1SoqlQueries {
-  
+    
     public list<account> GetRecordsTraditionalFor(){
         list<account>accList=[select name,rating from account]; 
         for(integer i=0;i<accList.size();i++){

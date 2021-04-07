@@ -1,0 +1,92 @@
+<aura:component controller="ListviewResultClass" implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="ListView" type="List"/>
+    <aura:attribute name="sobject" type="object"/>
+    <aura:attribute name="iconName" type="string"/>
+    <aura:attribute name="viewName" type="string"/>
+    <aura:attribute name="mydata" type="object"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    <aura:attribute name="bShowListView" type="boolean" default="false"/>
+    <aura:attribute name="PaginationList" type="object"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="10"/>
+    <div class="slds-grid slds-gutters slds-theme_default">
+    <div class="slds-col">
+        <p class="title"><strong>Select Object</strong></p>
+        <lightning:select class="single" aura:id="InputSelectSingle" label=" " onchange="{!c.onSingleSelectChange}">
+            <option text="None"/>
+            <option text="Account"/>
+            <option text="Contact"/>
+            <option text="Lead"/>
+            <option text="Opportunity"/>
+        </lightning:select><br/><br/>
+    </div>
+    
+    <div class="slds-col">
+        <p class="title"><strong>Select List View</strong></p>
+        <lightning:select class="single" aura:id="InputSelectListView" label=" " onchange="{!c.onListViewChange}">
+            <aura:iteration items="{!v.ListView}" var="item">
+                <option text="{!item.Name}"/>
+            </aura:iteration>
+        </lightning:select><br/>      
+    </div>
+        </div>
+    <aura:if isTrue="{!v.bShowListView}">
+        <article class="slds-card">
+            <div class="slds-page-header">
+                <div class="slds-page-header__row">
+                    <div class="slds-page-header__col-title">
+                        <div class="slds-media">
+                             
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-opportunity">
+                                    
+                                 <!--   <img src="/assets/icons/standard-sprite/svg/symbols.svg#opportunity"></img> -->
+                                    <lightning:icon iconName="{!'standard:'+v.iconName}" alternativeText="{!v.iconName}" title="{!v.iconName}" />
+                                </span>
+                            </div>
+                            
+                            <div class="slds-media__body">
+                                <div class="slds-page-header__name">
+                                    <div class="slds-page-header__name-title">
+                                        <h1>
+                                            <span>{!v.sobject}</span>
+                                            <span class="slds-page-header__title slds-truncate" title="{!v.viewName}">{!v.viewName}</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <lightning:input type="text" name="searchKey" label="Search" aura:id="searchKey"
+                     placeholder="Search" onchange="{!c.searchKeyChange}"/> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-m-around_medium">
+                
+                <lightning:datatable aura:id="acctTable"
+                                     data="{!v.PaginationList}"
+                                     columns="{!v.mycolumns}"
+                                     keyField="Id"
+                                     draftValues="{!v.draftValues}"
+                                     hideCheckboxColumn="true"
+                                     onsave="{!c.onSave}"/>
+                <br/>
+                <lightning:buttonGroup >
+                    <lightning:button label="Previous" disabled="{!v.startPage == 0}"  
+                                      onclick="{!c.previous}" variant="brand"
+                                      iconName='utility:back'/>
+                    &nbsp; &nbsp; &nbsp;
+                    <lightning:button label="Next" disabled="{!v.endPage >= v.totalRecords}" 
+                                      onclick="{!c.next}" variant="brand"
+                                      iconName='utility:forward' iconPosition='right'/>
+                </lightning:buttonGroup>
+                
+            </div>
+        </article>
+    </aura:if>  
+    
+    
+</aura:component>

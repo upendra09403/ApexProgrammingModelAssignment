@@ -25,7 +25,7 @@ public class ECS12_ApexImplementation {
             }
             
         }
-        list<contact>conList=[select accountid,email from contact where primeryContact__c=true and accountid!=null];
+        list<contact>conList=[select accountid,email from contact where primeryContact__c=true and accountid!=null and email!=null];
         //set<string>ExistingEmailSet=new set<string>();
         for(contact ct:conList){
             
